@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Intelligence Platform - Complete Learning Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 0;
+            min-height: calc(100vh - 200px);
+        }
+
+        .sidebar {
+            background: #f5f5f5;
+            padding: 20px;
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
+            max-height: calc(100vh - 200px);
+        }
+
+        .sidebar h3 {
+            color: #667eea;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin: 8px 0;
+        }
+
+        .sidebar a {
+            color: #666;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #e0e0e0;
+            color: #667eea;
+            padding-left: 16px;
+        }
+
+        .sidebar a.active {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        .main-content {
+            padding: 40px;
+            overflow-y: auto;
+            max-height: calc(100vh - 200px);
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        p, li {
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        .code-block {
+            background: #f8f8f8;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            border-radius: 4px;
+        }
+
+        .diagram {
+            background: #f9f9f9;
+            border: 2px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+
+        .box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .box.info {
+            background: #e3f2fd;
+            border-left-color: #2196F3;
+        }
+
+        .box.warning {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+
+        .box.success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .box h4 {
+            margin-top: 0;
+            color: #667eea;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .grid-item {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .grid-item h4 {
+            margin-top: 0;
+        }
+
+        .progress-bar {
+            display: flex;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+            height: 25px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8em;
+            font-weight: bold;
+            transition: width 0.3s;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-right: 5px;
+        }
+
+        .badge.yellow {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .badge.green {
+            background: #28a745;
+        }
+
+        .badge.red {
+            background: #dc3545;
+        }
+
+        footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .learning-path {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .learning-path ol {
+            margin-left: 20px;
+        }
+
+        .learning-path li {
+            margin: 10px 0;
+        }
+
+        .quote {
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            background: #f9f9f9;
+            italic: true;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Data Intelligence Platform</h1>
+            <p>Complete Learning Guide - Master Every Component</p>
+        </header>
+
+        <div class="content">
+            <!-- SIDEBAR NAVIGATION -->
+            <div class="sidebar">
+                <h3>🚀 Getting Started</h3>
+                <ul>
+                    <li><a href="#" onclick="showSection('intro', event)">Introduction</a></li>
+                    <li><a href="#" onclick="showSection('problem', event)">Problem & Solution</a></li>
+                    <li><a href="#" onclick="showSection('learning-path', event)">Learning Path</a></li>
+                </ul>
+
+                <h3>📐 Architecture</h3>
+                <ul>
+                    <li><a href="#" onclick="showSection('architecture', event)">System Architecture</a></li>
+                    <li><a href="#" onclick="showSection('components', event)">Components Overview</a></li>
+                    <li><a href="#" onclick="showSection('data-flow', event)">Data Flow</a></li>
+                </ul>
+
+                <h3>🗄️ Data Layer</h3>
+                <ul>
+                    <li><a href="#" onclick="showSection('postgresql', event)">PostgreSQL</a></li>
+                    <li><a href="#" onclick="showSection('neo4j', event)">Neo4j</a></li>
+                    <li><a href="#" onclick="showSection('opensearch', event)">OpenSearch</a></li>
+                    <li><a href="#" onclick="showSection('ollama', event)">Ollama</a></li>
+                </ul>
+
+                <h3>⚙️ Backend</h3>
+                <ul>
+                    <li><a href="#" onclick="showSection('fastapi', event)">FastAPI Setup</a></li>
+                    <li><a href="#" onclick="showSection('api-design', event)">API Design</a></li>
+                    <li><a href="#" onclick="showSection('endpoints', event)">All Endpoints</a></li>
+                </ul>
+
+                <h3>🎨 Frontend</h3>
+                <ul>
+                    <li><a href="#" onclick="showSection('react-setup', event)">React Setup</a></li>
+                    <li><a href="#" onclick="showSection('pages', event)">Pages & Components</a></li>
+                    <li><a href="#" onclick="showSection('ui-design', event)">UI Design</a></li>
+                </ul>
+
+                <h3>🔄 Ingestion</h3>
+                <ul>
+                    <li><a href="#" onclick="showSection('ingestion-overview', event)">Pipeline Overview</a></li>
+                    <li><a href="#" onclick="showSection('stage1', event)">Stage 1: Data Gen</a></li>
+                    <li><a href="#" onclick="showSection('stage2-7', event)">Stages 2-7: Metadata</a></li>
+                </ul>
+
+                <h3>🚀 Operations</h3>
+                <ul>
+                    <li><a href="#" onclick="showSection('docker', event)">Docker & Compose</a></li>
+                    <li><a href="#" onclick="showSection('setup', event)">Setup Guide</a></li>
+                    <li><a href="#" onclick="showSection('deployment', event)">Deployment</a></li>
+                </ul>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="main-content">
+
+                <!-- INTRODUCTION -->
+                <section id="intro" class="active">
+                    <h2>Welcome to Data Intelligence Platform</h2>
+                    <p>This is a comprehensive learning guide that will teach you everything about the Data Intelligence Platform project. By the end of this journey, you'll understand:</p>
+
+                    <ul>
+                        <li>✅ How to design a complete metadata discovery system</li>
+                        <li>✅ How different databases work together (PostgreSQL, Neo4j, OpenSearch)</li>
+                        <li>✅ How to build a REST API with FastAPI</li>
+                        <li>✅ How to create interactive UIs with React</li>
+                        <li>✅ How to extract and process metadata at scale</li>
+                        <li>✅ How to build production-ready systems with Docker</li>
+                    </ul>
+
+                    <div class="box success">
+                        <h4>🎯 Your Goal</h4>
+                        <p>Master this project deeply enough to explain every component, every database table, every API endpoint, and every feature—even in your sleep!</p>
+                    </div>
+
+                    <h3>Project Statistics</h3>
+                    <table>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Total Files</td>
+                            <td>38</td>
+                        </tr>
+                        <tr>
+                            <td>Lines of Code</td>
+                            <td>3,285+</td>
+                        </tr>
+                        <tr>
+                            <td>Databases</td>
+                            <td>4 (PostgreSQL, Neo4j, OpenSearch, Ollama)</td>
+                        </tr>
+                        <tr>
+                            <td>API Endpoints</td>
+                            <td>15+</td>
+                        </tr>
+                        <tr>
+                            <td>Frontend Pages</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>Ingestion Stages</td>
+                            <td>7</td>
+                        </tr>
+                        <tr>
+                            <td>Sample Data Rows</td>
+                            <td>660,000+</td>
+                        </tr>
+                        <tr>
+                            <td>Docker Services</td>
+                            <td>6</td>
+                        </tr>
+                    </table>
+
+                    <div class="box info">
+                        <h4>💡 How to Use This Guide</h4>
+                        <p>This guide is organized in the order you should understand the project:</p>
+                        <ol>
+                            <li>Start with the problem and solution</li>
+                            <li>Learn the architecture</li>
+                            <li>Dive into each component</li>
+                            <li>Understand data flow</li>
+                            <li>Learn operations</li>
+                        </ol>
+                        <p><strong>Pro Tip:</strong> Read sections multiple times. Each reading will reveal new insights!</p>
+                    </div>
+                </section>
+
+                <!-- PROBLEM & SOLUTION -->
+                <section id="problem">
+                    <h2>The Problem & Solution</h2>
+
+                    <h3>The Real Problem</h3>
+                    <p>Imagine you're a data engineer at a company with:</p>
+                    <ul>
+                        <li>Hundreds of data tables across multiple systems</li>
+                        <li>Dozens of dashboards and reports</li>
+                        <li>Complex ETL pipelines (Airflow DAGs)</li>
+                        <li>Data flowing from source → transformation → consumption</li>
+                        <li>Multiple teams managing different assets</li>
+                    </ul>
+
+                    <p>Now you need to answer questions like:</p>
+                    <ul>
+                        <li>❓ "What feeds the customer_fact table?"</li>
+                        <li>❓ "Which dashboards use sales data?"</li>
+                        <li>❓ "Who owns this table and when was it last updated?"</li>
+                        <li>❓ "Can I safely modify this column?"</li>
+                        <li>❓ "What's the impact if this table goes down?"</li>
+                    </ul>
+
+                    <p><strong>Traditional solutions:</strong> Ask people (slow), search Excel sheets (unreliable), read docs (outdated)</p>
+
+                    <h3>Our Solution: Data Intelligence Platform</h3>
+                    <p>We built an automated system that:</p>
+                    <ul>
+                        <li>✅ Discovers all data assets automatically</li>
+                        <li>✅ Maps complete data lineage (source → target)</li>
+                        <li>✅ Makes data searchable and discoverable</li>
+                        <li>✅ Provides an AI assistant to answer questions</li>
+                        <li>✅ Runs completely locally (no cloud bills, complete privacy)</li>
+                    </ul>
+
+                    <div class="quote">
+                        "This is inspired by Select Star, which is a commercial metadata discovery tool. We built a simplified, local version that you can run on your laptop."
+                    </div>
+
+                    <h3>Why This Approach?</h3>
+                    <table>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Traditional Way</th>
+                            <th>Our Platform</th>
+                        </tr>
+                        <tr>
+                            <td>Discovery</td>
+                            <td>Manual, slow</td>
+                            <td>Automatic, instant</td>
+                        </tr>
+                        <tr>
+                            <td>Lineage</td>
+                            <td>Not tracked</td>
+                            <td>Complete, visual</td>
+                        </tr>
+                        <tr>
+                            <td>Search</td>
+                            <td>Non-existent</td>
+                            <td>Semantic + full-text</td>
+                        </tr>
+                        <tr>
+                            <td>AI Help</td>
+                            <td>Ask colleagues</td>
+                            <td>AI assistant 24/7</td>
+                        </tr>
+                        <tr>
+                            <td>Cost</td>
+                            <td>$$$</td>
+                            <td>Free (local)</td>
+                        </tr>
+                        <tr>
+                            <td>Privacy</td>
+                            <td>Cloud exposure</td>
+                            <td>Complete control</td>
+                        </tr>
+                    </table>
+
+                    <h3>Real-World Use Cases</h3>
+                    <div class="grid-2">
+                        <div class="grid-item">
+                            <h4>🔍 Data Discovery</h4>
+                            <p>New team member asks "What tables have customer data?" → Instant answer with descriptions</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🔗 Lineage Impact Analysis</h4>
+                            <p>Planning to drop a column? See all downstream dashboards that will break</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>📊 Governance</h4>
+                            <p>Verify data ownership, understand SLAs, track freshness</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🤖 Smart Q&A</h4>
+                            <p>"What's revenue?" → AI explains the metric and shows you how it's calculated</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- LEARNING PATH -->
+                <section id="learning-path">
+                    <h2>Your Learning Path</h2>
+
+                    <div class="learning-path">
+                        <h3>📚 Recommended Learning Order</h3>
+                        <ol>
+                            <li>
+                                <strong>Week 1: Foundations</strong>
+                                <ul>
+                                    <li>Understand the problem and solution</li>
+                                    <li>Learn each database technology (SQL, Graph, Search, LLM)</li>
+                                    <li>Understand REST APIs and microservices</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Week 2: Architecture</strong>
+                                <ul>
+                                    <li>Study the system architecture</li>
+                                    <li>Trace data flows end-to-end</li>
+                                    <li>Understand each component's role</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Week 3: Implementation</strong>
+                                <ul>
+                                    <li>Deep dive into backend code</li>
+                                    <li>Learn the API design patterns</li>
+                                    <li>Understand database schemas</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Week 4: Frontend & Operations</strong>
+                                <ul>
+                                    <li>Study React components</li>
+                                    <li>Learn Docker and containerization</li>
+                                    <li>Understand deployment</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <h3>Knowledge Checkpoints</h3>
+                    <p>After each section, ask yourself these questions:</p>
+                    <ul>
+                        <li>✓ What problem does this component solve?</li>
+                        <li>✓ How does it interact with other components?</li>
+                        <li>✓ What are the key data structures?</li>
+                        <li>✓ What are the main algorithms/logic?</li>
+                        <li>✓ How would I explain this to a colleague?</li>
+                    </ul>
+
+                    <div class="box warning">
+                        <h4>⚠️ Common Learning Mistake</h4>
+                        <p>Don't just read code. After understanding a component, try to:</p>
+                        <ol>
+                            <li>Draw it on paper</li>
+                            <li>Explain it out loud</li>
+                            <li>Modify the code</li>
+                            <li>Trace through examples</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- ARCHITECTURE -->
+                <section id="architecture">
+                    <h2>System Architecture</h2>
+
+                    <h3>The Big Picture</h3>
+                    <div class="diagram">
+┌─────────────────────────────────────────────────────┐
+│           Frontend (React, Port 3000)                │
+│    Search │ Catalog │ Lineage │ Chat                │
+└──────────────────┬──────────────────────────────────┘
+                   │ REST API (JSON)
+┌──────────────────▼──────────────────────────────────┐
+│         Backend (FastAPI, Port 8000)                 │
+│  /search │ /lineage │ /catalog │ /chat │ /health    │
+└──────┬────────┬──────────┬──────────┬────────────────┘
+       │        │          │          │
+       ▼        ▼          ▼          ▼
+   ┌────────────────────────────────────────────┐
+   │ PostgreSQL │ Neo4j │ OpenSearch │ Ollama   │
+   │ (Data)     │ (Graph)│ (Search)  │ (LLM)    │
+   └─────┬──────────┬──────────┬────────┬────────┘
+         │          │          │        │
+         ▼          ▼          ▼        ▼
+    ┌────────────────────────────────────────┐
+    │  Metadata Ingestion Pipeline (Python)  │
+    │  Extract → Transform → Load → Index    │
+    └────────────────────────────────────────┘
+                    </div>
+
+                    <h3>Three-Tier Architecture</h3>
+                    <table>
+                        <tr>
+                            <th>Tier</th>
+                            <th>Technology</th>
+                            <th>Purpose</th>
+                            <th>Port</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Presentation</strong></td>
+                            <td>React + TypeScript</td>
+                            <td>User interface</td>
+                            <td>3000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Application</strong></td>
+                            <td>FastAPI (Python)</td>
+                            <td>Business logic & API</td>
+                            <td>8000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data</strong></td>
+                            <td>PostgreSQL, Neo4j, OpenSearch, Ollama</td>
+                            <td>Store & process data</td>
+                            <td>5432, 7687, 9200, 11434</td>
+                        </tr>
+                    </table>
+
+                    <h3>Communication Flow</h3>
+                    <div class="diagram">
+User clicks "Search"
+    │
+    ▼
+Frontend calls API
+    │
+    ▼
+POST /api/search with query
+    │
+    ▼
+Backend receives request
+    │
+    ▼
+Service queries OpenSearch
+    │
+    ▼
+OpenSearch returns results
+    │
+    ▼
+Backend formats response
+    │
+    ▼
+Return JSON to Frontend
+    │
+    ▼
+Frontend renders results
+    │
+    ▼
+User sees search results
+                    </div>
+
+                    <div class="box info">
+                        <h4>🔑 Key Principle</h4>
+                        <p><strong>Separation of Concerns:</strong> Each layer has a specific responsibility. Frontend doesn't talk directly to databases. Backend doesn't create UI. Databases don't know about API. This makes the system flexible and maintainable.</p>
+                    </div>
+                </section>
+
+                <!-- COMPONENTS OVERVIEW -->
+                <section id="components">
+                    <h2>Components Overview</h2>
+
+                    <h3>What is a Component?</h3>
+                    <p>A component is a self-contained unit that does one thing well and can be tested independently.</p>
+
+                    <h3>Our 4 Major Components</h3>
+
+                    <h4>1️⃣ Data Layer (4 Databases)</h4>
+                    <p>Stores and retrieves data</p>
+                    <ul>
+                        <li><strong>PostgreSQL:</strong> Relational data (facts, dimensions)</li>
+                        <li><strong>Neo4j:</strong> Relationship data (lineage graphs)</li>
+                        <li><strong>OpenSearch:</strong> Searchable indices (semantic + full-text)</li>
+                        <li><strong>Ollama:</strong> LLM service (embeddings + chat)</li>
+                    </ul>
+
+                    <h4>2️⃣ Backend API (FastAPI)</h4>
+                    <p>Business logic and REST endpoints</p>
+                    <ul>
+                        <li>Validates requests</li>
+                        <li>Queries databases</li>
+                        <li>Formats responses</li>
+                        <li>Handles errors</li>
+                    </ul>
+
+                    <h4>3️⃣ Frontend UI (React)</h4>
+                    <p>User interface and interactions</p>
+                    <ul>
+                        <li>Renders pages</li>
+                        <li>Captures user input</li>
+                        <li>Makes API calls</li>
+                        <li>Displays results</li>
+                    </ul>
+
+                    <h4>4️⃣ Ingestion Pipeline (Python)</h4>
+                    <p>Populates databases with metadata</p>
+                    <ul>
+                        <li>Generates sample data</li>
+                        <li>Extracts metadata</li>
+                        <li>Creates lineage</li>
+                        <li>Indexes documents</li>
+                    </ul>
+
+                    <h3>Component Interactions</h3>
+                    <div class="diagram">
+┌──────────┐
+│Frontend  │───REST API──→┌──────────┐
+└──────────┘←───JSON───────┤ Backend  │
+                           └────┬─────┘
+                                │
+                    ┌───────────┼───────────┐
+                    │           │           │
+                    ▼           ▼           ▼
+                PostgreSQL   Neo4j    OpenSearch
+
+Ingestion Pipeline populates all databases
+                    </div>
+
+                    <h3>Interaction Patterns</h3>
+                    <table>
+                        <tr>
+                            <th>Interaction</th>
+                            <th>Type</th>
+                            <th>When</th>
+                        </tr>
+                        <tr>
+                            <td>Frontend ↔ Backend</td>
+                            <td>HTTP REST</td>
+                            <td>Always (user actions)</td>
+                        </tr>
+                        <tr>
+                            <td>Backend ↔ PostgreSQL</td>
+                            <td>SQL Queries</td>
+                            <td>Data operations</td>
+                        </tr>
+                        <tr>
+                            <td>Backend ↔ Neo4j</td>
+                            <td>Cypher Queries</td>
+                            <td>Lineage queries</td>
+                        </tr>
+                        <tr>
+                            <td>Backend ↔ OpenSearch</td>
+                            <td>HTTP REST</td>
+                            <td>Search operations</td>
+                        </tr>
+                        <tr>
+                            <td>Backend ↔ Ollama</td>
+                            <td>HTTP REST</td>
+                            <td>Chat & embeddings</td>
+                        </tr>
+                        <tr>
+                            <td>Ingestion ↔ All Databases</td>
+                            <td>Various</td>
+                            <td>Setup phase</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <!-- DATA FLOW -->
+                <section id="data-flow">
+                    <h2>Data Flow Through the System</h2>
+
+                    <h3>Flow 1: Initial Setup (Ingestion)</h3>
+                    <div class="diagram">
+1. Generate Sample Data
+   └→ Insert into PostgreSQL
+
+2. Extract Metadata
+   └→ Query PostgreSQL
+   └→ Analyze table/column info
+   └→ Store in metadata tables
+
+3. Parse DAGs & Dashboards
+   └→ Read configuration files
+   └→ Extract structure
+
+4. Generate Lineage
+   └→ Analyze SQL and DAG configs
+   └→ Create relationships
+   └→ Insert into Neo4j
+
+5. Create Embeddings
+   └→ Use Ollama to vectorize text
+   └→ Index in OpenSearch
+
+6. Generate Documentation
+   └→ Create markdown files
+                    </div>
+
+                    <h3>Flow 2: User Search (Runtime)</h3>
+                    <div class="diagram">
+User enters search query in Frontend
+    │
+    ▼
+Frontend calls: POST /api/search?q=customer
+    │
+    ▼
+Backend SearchService receives request
+    │
+    ▼
+Service queries OpenSearch
+    │
+    ├─ Full-text search on table names
+    ├─ Semantic search on descriptions (if query has embeddings)
+    └─ Combine and rank results
+    │
+    ▼
+OpenSearch returns matching documents
+    │
+    ▼
+Backend formats response
+    │
+    ├─ Transform OpenSearch results
+    ├─ Add metadata from Neo4j/PostgreSQL
+    └─ Return to Frontend
+    │
+    ▼
+Frontend receives JSON response
+    │
+    ▼
+Frontend renders result cards
+    │
+    ▼
+User sees search results with click handlers
+                    </div>
+
+                    <h3>Flow 3: Lineage Query (Runtime)</h3>
+                    <div class="diagram">
+User selects table in Frontend
+    │
+    ▼
+Frontend calls: GET /api/lineage/customer_dim?direction=downstream
+    │
+    ▼
+Backend LineageService receives request
+    │
+    ▼
+Service queries Neo4j
+    │
+    ├─ MATCH (t:Table {name: 'customer_dim'})
+    ├─ MATCH path = (t)-[r:FEEDS_INTO*1..3]->(downstream)
+    └─ Return all nodes and relationships
+    │
+    ▼
+Neo4j returns nodes and edges
+    │
+    ▼
+Backend converts to graph format
+    │
+    ├─ Extract nodes: {id, name, type, metadata}
+    └─ Extract edges: {source, target, relationship}
+    │
+    ▼
+Frontend receives graph data
+    │
+    ▼
+Frontend uses Cytoscape.js to render interactive graph
+    │
+    ▼
+User can hover, click, and navigate lineage
+                    </div>
+
+                    <h3>Flow 4: Chat Query (Runtime)</h3>
+                    <div class="diagram">
+User asks: "What feeds customer_fact?"
+    │
+    ▼
+Frontend calls: POST /api/chat with {query: "What feeds customer_fact?"}
+    │
+    ▼
+Backend ChatService receives request
+    │
+    ├─ Parse question to understand intent
+    ├─ Extract entity: "customer_fact" (table)
+    ├─ Query Neo4j for FEEDS_INTO relationships
+    │
+    ▼
+Neo4j returns upstream tables
+    │
+    ├─ raw_customers (from raw system)
+    └─ Other source tables
+    │
+    ▼
+Backend calls Ollama
+    │
+    ├─ Provide context: "customer_fact is fed by..."
+    ├─ Ask Ollama to generate human-readable response
+    └─ Include sources and confidence
+    │
+    ▼
+Frontend receives response
+    │
+    ▼
+Frontend displays answer with source attribution
+    │
+    ▼
+User understands the data flow
+                    </div>
+
+                    <h3>Data Residency</h3>
+                    <table>
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Stored In</th>
+                            <th>Why</th>
+                        </tr>
+                        <tr>
+                            <td>Fact & Dimension Tables</td>
+                            <td>PostgreSQL</td>
+                            <td>ACID, complex joins, standard SQL</td>
+                        </tr>
+                        <tr>
+                            <td>Lineage Relationships</td>
+                            <td>Neo4j</td>
+                            <td>Graph structure, efficient traversal</td>
+                        </tr>
+                        <tr>
+                            <td>Full-text Index</td>
+                            <td>OpenSearch</td>
+                            <td>Fast search, ranking, relevance</td>
+                        </tr>
+                        <tr>
+                            <td>Semantic Embeddings</td>
+                            <td>OpenSearch</td>
+                            <td>Vector similarity search</td>
+                        </tr>
+                        <tr>
+                            <td>Documentation</td>
+                            <td>Files + OpenSearch</td>
+                            <td>Version control + searchability</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <!-- POSTGRESQL -->
+                <section id="postgresql">
+                    <h2>PostgreSQL: The Data Warehouse</h2>
+
+                    <h3>What is PostgreSQL?</h3>
+                    <p><strong>PostgreSQL</strong> is a relational database management system. Think of it as a collection of organized tables with columns and rows, where you can find anything using SQL queries.</p>
+
+                    <h3>Why PostgreSQL for This Project?</h3>
+                    <ul>
+                        <li>✅ <strong>ACID Compliance:</strong> Your data is always consistent</li>
+                        <li>✅ <strong>Complex Queries:</strong> Can JOIN multiple tables and aggregate</li>
+                        <li>✅ <strong>Indexing:</strong> Fast lookups on specific columns</li>
+                        <li>✅ <strong>Open Source:</strong> Free, no licensing costs</li>
+                        <li>✅ <strong>Reliable:</strong> Been around for 20+ years</li>
+                    </ul>
+
+                    <h3>Our Tables</h3>
+                    <div class="diagram">
+┌─────────────────────────────┐
+│     public schema           │
+├─────────────────────────────┤
+│ customer_dim                │  10,000 rows - Who are the customers?
+├─────────────────────────────┤
+│ product_dim                 │  5,000 rows - What products do we have?
+├─────────────────────────────┤
+│ sales_fact                  │  500,000 rows - What sold when?
+├─────────────────────────────┤
+│ order_fact                  │  100,000 rows - Orders and statuses
+├─────────────────────────────┤
+│ inventory_fact              │  50,000 rows - Stock levels
+└─────────────────────────────┘
+
+┌─────────────────────────────┐
+│     metadata schema         │
+├─────────────────────────────┤
+│ table_metadata              │  Metadata about tables
+├─────────────────────────────┤
+│ column_metadata             │  Metadata about columns
+└─────────────────────────────┘
+                    </div>
+
+                    <h3>Table: customer_dim</h3>
+                    <p><strong>Purpose:</strong> Stores customer master data</p>
+                    <table>
+                        <tr>
+                            <th>Column</th>
+                            <th>Type</th>
+                            <th>Meaning</th>
+                        </tr>
+                        <tr>
+                            <td>customer_id</td>
+                            <td>INTEGER (PK)</td>
+                            <td>Unique identifier for each customer</td>
+                        </tr>
+                        <tr>
+                            <td>customer_name</td>
+                            <td>VARCHAR(255)</td>
+                            <td>Full name of the customer</td>
+                        </tr>
+                        <tr>
+                            <td>email</td>
+                            <td>VARCHAR(255)</td>
+                            <td>Customer email (unique)</td>
+                        </tr>
+                        <tr>
+                            <td>phone</td>
+                            <td>VARCHAR(20)</td>
+                            <td>Phone number</td>
+                        </tr>
+                        <tr>
+                            <td>city</td>
+                            <td>VARCHAR(100)</td>
+                            <td>City of residence</td>
+                        </tr>
+                        <tr>
+                            <td>country</td>
+                            <td>VARCHAR(100)</td>
+                            <td>Country of residence</td>
+                        </tr>
+                        <tr>
+                            <td>signup_date</td>
+                            <td>DATE</td>
+                            <td>When they joined</td>
+                        </tr>
+                        <tr>
+                            <td>is_active</td>
+                            <td>BOOLEAN</td>
+                            <td>Whether account is active</td>
+                        </tr>
+                        <tr>
+                            <td>created_at</td>
+                            <td>TIMESTAMP</td>
+                            <td>Record creation time</td>
+                        </tr>
+                        <tr>
+                            <td>updated_at</td>
+                            <td>TIMESTAMP</td>
+                            <td>Last update time</td>
+                        </tr>
+                    </table>
+
+                    <h3>Table: sales_fact</h3>
+                    <p><strong>Purpose:</strong> Stores transaction-level sales data</p>
+                    <table>
+                        <tr>
+                            <th>Column</th>
+                            <th>Type</th>
+                            <th>Meaning</th>
+                        </tr>
+                        <tr>
+                            <td>sales_id</td>
+                            <td>BIGINT (PK)</td>
+                            <td>Unique sales transaction ID</td>
+                        </tr>
+                        <tr>
+                            <td>customer_id</td>
+                            <td>INTEGER (FK)</td>
+                            <td>References customer_dim</td>
+                        </tr>
+                        <tr>
+                            <td>product_id</td>
+                            <td>INTEGER (FK)</td>
+                            <td>References product_dim</td>
+                        </tr>
+                        <tr>
+                            <td>sales_date</td>
+                            <td>DATE</td>
+                            <td>When the sale happened</td>
+                        </tr>
+                        <tr>
+                            <td>quantity</td>
+                            <td>INTEGER</td>
+                            <td>Units sold</td>
+                        </tr>
+                        <tr>
+                            <td>unit_price</td>
+                            <td>DECIMAL</td>
+                            <td>Price per unit</td>
+                        </tr>
+                        <tr>
+                            <td>total_amount</td>
+                            <td>DECIMAL</td>
+                            <td>Total before discount</td>
+                        </tr>
+                        <tr>
+                            <td>discount_amount</td>
+                            <td>DECIMAL</td>
+                            <td>Discount applied</td>
+                        </tr>
+                        <tr>
+                            <td>tax_amount</td>
+                            <td>DECIMAL</td>
+                            <td>Tax applied</td>
+                        </tr>
+                    </table>
+
+                    <h3>Relationships (Foreign Keys)</h3>
+                    <div class="diagram">
+customer_dim ──→ sales_fact
+  (many customers can have many sales)
+
+product_dim ──→ sales_fact
+  (many products can have many sales)
+
+customer_dim ──→ order_fact
+  (many customers can have many orders)
+
+product_dim ──→ inventory_fact
+  (one product can have inventory in many locations)
+                    </div>
+
+                    <h3>SQL Example: Common Queries</h3>
+                    <div class="code-block">
+-- Get total revenue by customer
+SELECT
+    c.customer_name,
+    SUM(s.total_amount) as total_revenue,
+    COUNT(s.sales_id) as num_sales
+FROM customer_dim c
+JOIN sales_fact s ON c.customer_id = s.customer_id
+GROUP BY c.customer_id, c.customer_name
+ORDER BY total_revenue DESC;
+
+-- Find top selling products
+SELECT
+    p.product_name,
+    SUM(s.quantity) as units_sold,
+    SUM(s.total_amount) as revenue
+FROM product_dim p
+JOIN sales_fact s ON p.product_id = s.product_id
+GROUP BY p.product_id, p.product_name
+ORDER BY units_sold DESC
+LIMIT 10;
+                    </div>
+
+                    <h3>Indexing Strategy</h3>
+                    <p>Indexes speed up queries by organizing data like a book index:</p>
+                    <table>
+                        <tr>
+                            <th>Index</th>
+                            <th>On Column</th>
+                            <th>Why</th>
+                        </tr>
+                        <tr>
+                            <td>idx_customer_email</td>
+                            <td>customer_dim.email</td>
+                            <td>Fast lookup by email</td>
+                        </tr>
+                        <tr>
+                            <td>idx_sales_date</td>
+                            <td>sales_fact.sales_date</td>
+                            <td>Fast date range queries</td>
+                        </tr>
+                        <tr>
+                            <td>idx_sales_customer</td>
+                            <td>sales_fact.customer_id</td>
+                            <td>Fast join with customer_dim</td>
+                        </tr>
+                        <tr>
+                            <td>idx_sales_product</td>
+                            <td>sales_fact.product_id</td>
+                            <td>Fast join with product_dim</td>
+                        </tr>
+                    </table>
+
+                    <div class="box info">
+                        <h4>💡 Key Concept: Normalization</h4>
+                        <p>Our design uses <strong>dimension and fact tables</strong>:</p>
+                        <ul>
+                            <li><strong>Dimensions:</strong> customer_dim, product_dim (describes what/who)</li>
+                            <li><strong>Facts:</strong> sales_fact, order_fact (describes what happened)</li>
+                        </ul>
+                        <p>This pattern makes data easy to understand, query, and maintain.</p>
+                    </div>
+                </section>
+
+                <!-- NEO4J -->
+                <section id="neo4j">
+                    <h2>Neo4j: The Lineage Graph Database</h2>
+
+                    <h3>What is Neo4j?</h3>
+                    <p><strong>Neo4j</strong> is a graph database. Instead of tables, it stores <strong>nodes</strong> (things) and <strong>relationships</strong> (connections between things).</p>
+
+                    <p><strong>Analogy:</strong> If PostgreSQL is a spreadsheet, Neo4j is a network diagram where boxes are connected with lines.</p>
+
+                    <h3>Why Neo4j for Lineage?</h3>
+                    <ul>
+                        <li>✅ <strong>Natural Fit:</strong> Data lineage IS a graph</li>
+                        <li>✅ <strong>Fast Traversal:</strong> Following relationships is blazingly fast</li>
+                        <li>✅ <strong>Pattern Matching:</strong> Find complex patterns easily</li>
+                        <li>✅ <strong>Visual:</strong> Natural to render as diagrams</li>
+                    </ul>
+
+                    <h3>Core Concepts</h3>
+                    <div class="grid-2">
+                        <div class="grid-item">
+                            <h4>🔹 Nodes</h4>
+                            <p>Entities in the graph. Each has:</p>
+                            <ul>
+                                <li>Label (type): Table, Column, Dashboard, Job</li>
+                                <li>Properties: name, owner, description, etc.</li>
+                            </ul>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🔗 Relationships</h4>
+                            <p>Connections between nodes. Each has:</p>
+                            <ul>
+                                <li>Type: FEEDS_INTO, USED_BY, OWNS</li>
+                                <li>Properties: description, metadata</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Our Graph Structure</h3>
+                    <div class="diagram">
+(Table:customer_dim)
+    │
+    ├─[FEEDS_INTO]──→ (Table:sales_fact)
+    │                     │
+    │                     ├─[USED_BY]──→ (Dashboard:sales_dashboard)
+    │                     │
+    │                     └─[USED_BY]──→ (Dashboard:financial_dashboard)
+    │
+    └─[OWNS]──→ (Team:analytics-team)
+
+(Table:product_dim)
+    │
+    ├─[FEEDS_INTO]──→ (Table:sales_fact)
+    │
+    └─[OWNS]──→ (Team:analytics-team)
+
+(Job:sales_ingest_dag)
+    │
+    └─[PROCESSES]──→ (Table:sales_fact)
+                    </div>
+
+                    <h3>Node Types</h3>
+                    <table>
+                        <tr>
+                            <th>Node Type</th>
+                            <th>Example</th>
+                            <th>Properties</th>
+                        </tr>
+                        <tr>
+                            <td>Table</td>
+                            <td>customer_dim</td>
+                            <td>name, schema, owner, row_count, description</td>
+                        </tr>
+                        <tr>
+                            <td>Column</td>
+                            <td>customer_id</td>
+                            <td>name, type, nullable, table_name</td>
+                        </tr>
+                        <tr>
+                            <td>Dashboard</td>
+                            <td>sales_dashboard</td>
+                            <td>id, name, owner, description</td>
+                        </tr>
+                        <tr>
+                            <td>Job/DAG</td>
+                            <td>customer_etl</td>
+                            <td>name, owner, schedule, description</td>
+                        </tr>
+                    </table>
+
+                    <h3>Relationship Types</h3>
+                    <table>
+                        <tr>
+                            <th>Relationship</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Meaning</th>
+                        </tr>
+                        <tr>
+                            <td>FEEDS_INTO</td>
+                            <td>Table/Job</td>
+                            <td>Table</td>
+                            <td>Data flows from source to target</td>
+                        </tr>
+                        <tr>
+                            <td>USED_BY</td>
+                            <td>Table</td>
+                            <td>Dashboard/Report</td>
+                            <td>Table is queried by dashboard</td>
+                        </tr>
+                        <tr>
+                            <td>DEPENDS_ON</td>
+                            <td>Job/Task</td>
+                            <td>Table</td>
+                            <td>Job requires this table</td>
+                        </tr>
+                        <tr>
+                            <td>OWNS</td>
+                            <td>Team/Person</td>
+                            <td>Asset</td>
+                            <td>Who is responsible</td>
+                        </tr>
+                    </table>
+
+                    <h3>Cypher Query Language</h3>
+                    <p><strong>Cypher</strong> is Neo4j's query language. It looks like ASCII art of the graph!</p>
+
+                    <div class="code-block">
+-- Find all tables that feed into customer_fact
+MATCH (source:Table)-[r:FEEDS_INTO]->(target:Table {name: 'customer_fact'})
+RETURN source.name, r.description
+
+-- Find all downstream impact (what breaks if I drop this table?)
+MATCH path = (table:Table {name: 'customer_dim'})-[r:FEEDS_INTO*1..3]->(downstream)
+RETURN path
+
+-- Find who owns what
+MATCH (team)-[r:OWNS]->(asset)
+WHERE asset.name = 'customer_dim'
+RETURN team.name, asset.name
+
+-- Get lineage depth (how many hops?)
+MATCH path = (source:Table)-[r:FEEDS_INTO*]->(target:Table)
+WHERE source.name = 'raw_customers' AND target.name = 'sales_fact'
+RETURN length(path) as hops
+                    </div>
+
+                    <h3>Example: Complete Lineage for sales_fact</h3>
+                    <div class="diagram">
+UPSTREAM (what feeds into it):
+  raw_customers ──→ customer_dim
+         ↘              ↙
+          ╲            ╱
+           ╲          ╱
+            ╲        ╱
+             ╲      ╱
+            sales_fact
+
+DOWNSTREAM (what uses it):
+  sales_fact ──→ sales_dashboard
+             ├──→ financial_dashboard
+             ├──→ customer_dashboard
+             └──→ revenue_metric (in other reports)
+
+IMPACT ANALYSIS:
+If sales_fact goes down → All downstream break
+If raw_customers goes down → sales_fact incomplete
+If customer_dim goes down → sales_fact can't be enriched
+                    </div>
+
+                    <div class="box success">
+                        <h4>🎯 Power of Graphs</h4>
+                        <p>With relational database, finding "all downstream impact" would require complex SQL with multiple JOINs. With Neo4j, it's one simple query. That's the power of graph databases for lineage!</p>
+                    </div>
+                </section>
+
+                <!-- OPENSEARCH -->
+                <section id="opensearch">
+                    <h2>OpenSearch: Full-Text Search & Embeddings</h2>
+
+                    <h3>What is OpenSearch?</h3>
+                    <p><strong>OpenSearch</strong> is a search and analytics engine. It's like Google for your data—you type a query and it finds relevant results, ranked by relevance.</p>
+
+                    <h3>Why OpenSearch?</h3>
+                    <ul>
+                        <li>✅ <strong>Full-Text Search:</strong> Find "customer" in any document field</li>
+                        <li>✅ <strong>Vector Search:</strong> Find semantically similar items</li>
+                        <li>✅ <strong>Relevance Ranking:</strong> Best results first</li>
+                        <li>✅ <strong>Real-Time Indexing:</strong> Fast updates</li>
+                        <li>✅ <strong>Open Source:</strong> Fork of Elasticsearch</li>
+                    </ul>
+
+                    <h3>Two Types of Search</h3>
+                    <div class="grid-2">
+                        <div class="grid-item">
+                            <h4>🔤 Full-Text Search</h4>
+                            <p><strong>What:</strong> Keyword matching</p>
+                            <p><strong>Query:</strong> "sales"</p>
+                            <p><strong>Returns:</strong> Documents containing "sales", "Sales", "SALES"</p>
+                            <p><strong>Example:</strong> Find all tables about sales</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🧠 Semantic Search</h4>
+                            <p><strong>What:</strong> Meaning matching</p>
+                            <p><strong>Query:</strong> "revenue"</p>
+                            <p><strong>Returns:</strong> Tables about income, sales, earnings, etc.</p>
+                            <p><strong>Example:</strong> Find metrics about money coming in</p>
+                        </div>
+                    </div>
+
+                    <h3>How Search Works</h3>
+                    <div class="diagram">
+1. User enters: "customer data"
+         │
+         ▼
+2. Split into terms: ["customer", "data"]
+         │
+         ▼
+3. Search for "customer" in inverted index
+   (inverted index maps word → document)
+         │
+         ▼
+4. Search for "data" in inverted index
+         │
+         ▼
+5. Combine results
+   (docs with both terms score highest)
+         │
+         ▼
+6. Rank by relevance score (BM25 algorithm)
+   (matches in title > matches in description)
+         │
+         ▼
+7. Return top 20 results with scores
+         │
+         ▼
+8. Display to user
+                    </div>
+
+                    <h3>Our Indices (Search Collections)</h3>
+                    <table>
+                        <tr>
+                            <th>Index</th>
+                            <th>Contains</th>
+                            <th>Searchable Fields</th>
+                        </tr>
+                        <tr>
+                            <td>tables_index</td>
+                            <td>Table metadata</td>
+                            <td>name, description, schema, owner</td>
+                        </tr>
+                        <tr>
+                            <td>columns_index</td>
+                            <td>Column metadata</td>
+                            <td>name, type, description, table_name</td>
+                        </tr>
+                        <tr>
+                            <td>dashboards_index</td>
+                            <td>Dashboard metadata</td>
+                            <td>name, description, owner, tables</td>
+                        </tr>
+                        <tr>
+                            <td>documentation_index</td>
+                            <td>Markdown documentation</td>
+                            <td>content (full text)</td>
+                        </tr>
+                    </table>
+
+                    <h3>Index Document Example</h3>
+                    <div class="code-block">
+{
+  "id": "customer_dim",
+  "name": "customer_dim",
+  "schema": "public",
+  "owner": "analytics-team",
+  "description": "Customer dimension table with customer details and signup information",
+  "row_count": 10000,
+  "columns": ["customer_id", "customer_name", "email", "phone", "city", "country", "signup_date", "is_active"],
+  "embedding": [0.123, 0.456, 0.789, ...],  // 1024-dimensional vector
+  "tags": ["customer", "dimension", "master-data"],
+  "created_at": "2024-01-15",
+  "updated_at": "2024-06-15"
+}
+                    </div>
+
+                    <h3>Vector Embeddings</h3>
+                    <p><strong>Embedding:</strong> A numerical representation of meaning.</p>
+
+                    <p>The sentence "customer_dim stores customer information" gets converted to a vector of 1024 numbers that represents its meaning.</p>
+
+                    <div class="diagram">
+Text: "customer dimension with customer details"
+   │
+   ▼
+Ollama (LLM) processes text
+   │
+   ▼
+Returns 1024-dimensional vector:
+[0.123, 0.456, 0.789, ..., 0.234]
+   │
+   ▼
+Stored in OpenSearch
+   │
+   ▼
+When user searches for "who has customer info?"
+   ▼
+Convert query to vector
+   │
+   ▼
+Find vectors closest to query vector
+   │
+   ▼
+Return semantically similar results
+                    </div>
+
+                    <h3>Search in Action</h3>
+                    <div class="code-block">
+-- Full-text search (backend calls this)
+GET /tables_index/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "customer",
+      "fields": ["name", "description", "owner"]
+    }
+  }
+}
+
+-- Vector similarity search
+GET /tables_index/_search
+{
+  "query": {
+    "knn": {
+      "embedding": {
+        "vector": [0.123, 0.456, ...],
+        "k": 5
+      }
+    }
+  }
+}
+
+-- Combined search (best of both)
+GET /tables_index/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {"match": {"description": "customer"}},
+        {"knn": {"embedding": {...}}}
+      ]
+    }
+  }
+}
+                    </div>
+
+                    <div class="box info">
+                        <h4>💡 Why Both Types?</h4>
+                        <p><strong>Full-text:</strong> Fast, exact, works well for exact matches</p>
+                        <p><strong>Semantic:</strong> Slow but smart, understands meaning</p>
+                        <p>Using both gives you the best of both worlds!</p>
+                    </div>
+                </section>
+
+                <!-- OLLAMA -->
+                <section id="ollama">
+                    <h2>Ollama: Local LLM</h2>
+
+                    <h3>What is Ollama?</h3>
+                    <p><strong>Ollama</strong> is a tool to run Large Language Models (LLMs) locally on your computer. It's like having ChatGPT running on your machine, without sending data to the cloud.</p>
+
+                    <h3>Why Ollama?</h3>
+                    <ul>
+                        <li>✅ <strong>Private:</strong> All data stays on your machine</li>
+                        <li>✅ <strong>Free:</strong> No API costs</li>
+                        <li>✅ <strong>Fast:</strong> No network latency</li>
+                        <li>✅ <strong>Offline:</strong> Works without internet</li>
+                        <li>✅ <strong>Reliable:</strong> Your infrastructure, your control</li>
+                    </ul>
+
+                    <h3>LLM (Large Language Model) Basics</h3>
+                    <p>An LLM is an AI that:</p>
+                    <ol>
+                        <li>Takes text as input</li>
+                        <li>Understands what you're asking</li>
+                        <li>Generates relevant text as output</li>
+                    </ol>
+
+                    <p><strong>Example:</strong></p>
+                    <ul>
+                        <li>Input: "What feeds customer_fact?"</li>
+                        <li>LLM thinks about question and context</li>
+                        <li>Output: "customer_fact is fed by raw_customers table, which is extracted daily via the customer_etl DAG..."</li>
+                    </ul>
+
+                    <h3>Two Uses in Our System</h3>
+                    <div class="grid-2">
+                        <div class="grid-item">
+                            <h4>1️⃣ Embeddings</h4>
+                            <p><strong>What:</strong> Convert text to numbers</p>
+                            <p><strong>Input:</strong> "Customer dimension table"</p>
+                            <p><strong>Output:</strong> [0.123, 0.456, ..., 0.789] (1024 numbers)</p>
+                            <p><strong>Use:</strong> Semantic search in OpenSearch</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>2️⃣ Chat</h4>
+                            <p><strong>What:</strong> Generate human-readable responses</p>
+                            <p><strong>Input:</strong> "What feeds customer_fact?" + context data</p>
+                            <p><strong>Output:</strong> Natural language explanation</p>
+                            <p><strong>Use:</strong> AI Assistant in chat page</p>
+                        </div>
+                    </div>
+
+                    <h3>Llama 3: Our Chosen Model</h3>
+                    <p><strong>Llama 3</strong> is Meta's open-source LLM. We chose it because:</p>
+                    <ul>
+                        <li>✅ <strong>Open Source:</strong> Completely free and modifiable</li>
+                        <li>✅ <strong>Good Quality:</strong> Performs well on various tasks</li>
+                        <li>✅ <strong>Reasonable Size:</strong> ~4GB (fits on most laptops)</li>
+                        <li>✅ <strong>Well Maintained:</strong> Regular updates</li>
+                    </ul>
+
+                    <h3>How Ollama Works</h3>
+                    <div class="diagram">
+1. Start Ollama service on port 11434
+         │
+         ▼
+2. Backend requests embedding
+         │
+         ▼
+3. POST http://localhost:11434/api/embeddings
+   {
+     "model": "llama3",
+     "prompt": "customer dimension table"
+   }
+         │
+         ▼
+4. Ollama loads Llama 3 model to GPU/CPU
+         │
+         ▼
+5. Model processes text
+         │
+         ▼
+6. Returns JSON with embedding vector
+         │
+         ▼
+7. Backend indexes vector in OpenSearch
+                    </div>
+
+                    <h3>Example: Chat Flow</h3>
+                    <div class="code-block">
+User asks: "What feeds customer_fact?"
+         │
+         ▼
+Backend receives question
+         │
+         ▼
+Backend queries Neo4j:
+  MATCH (source:Table)-[r:FEEDS_INTO]->(target:Table {name: 'customer_fact'})
+  RETURN source.name, r.description
+         │
+         ▼
+Neo4j returns:
+  [
+    {source: "raw_customers", description: "Raw customer data"},
+    {source: "raw_updates", description: "Customer updates"}
+  ]
+         │
+         ▼
+Backend crafts context prompt:
+  "Based on the data lineage, customer_fact is fed by:
+   - raw_customers: Raw customer data
+   - raw_updates: Customer updates
+
+   Explain this to the user."
+         │
+         ▼
+Backend calls Ollama:
+  POST /api/generate
+  {
+    "model": "llama3",
+    "prompt": "Based on the data lineage, customer_fact is fed by...",
+    "stream": false
+  }
+         │
+         ▼
+Ollama generates response:
+  "customer_fact is populated from two main sources...
+   The raw_customers table contains initial customer information...
+   The raw_updates table contains...
+   This data is processed daily by the customer_etl DAG..."
+         │
+         ▼
+Backend returns response to Frontend
+         │
+         ▼
+Frontend displays answer to user
+                    </div>
+
+                    <div class="box warning">
+                        <h4>⚠️ LLM Limitations</h4>
+                        <p>LLMs are powerful but not perfect:</p>
+                        <ul>
+                            <li>Can "hallucinate" (make up facts)</li>
+                            <li>May give inconsistent answers</li>
+                            <li>Need good context to work well</li>
+                            <li>Slower than traditional code</li>
+                        </ul>
+                        <p><strong>Solution:</strong> Always provide factual context from databases. Let the LLM explain, not discover.</p>
+                    </div>
+                </section>
+
+                <!-- More sections continue below... -->
+                <section id="fastapi">
+                    <h2>FastAPI: Backend Framework</h2>
+
+                    <h3>What is FastAPI?</h3>
+                    <p><strong>FastAPI</strong> is a modern Python framework for building APIs (Application Programming Interfaces). It's the glue between your databases and the frontend.</p>
+
+                    <h3>Why FastAPI?</h3>
+                    <ul>
+                        <li>✅ <strong>Fast:</strong> Built on async/await for high performance</li>
+                        <li>✅ <strong>Modern:</strong> Uses Python 3.7+ features</li>
+                        <li>✅ <strong>Type Safe:</strong> Built-in type hints and validation</li>
+                        <li>✅ <strong>Auto Documentation:</strong> Swagger UI out of the box</li>
+                        <li>✅ <strong>Easy to Learn:</strong> Clear, intuitive API</li>
+                    </ul>
+
+                    <h3>Project Structure</h3>
+                    <div class="code-block">
+backend/
+├── app.py              ← Main FastAPI app
+├── requirements.txt    ← Dependencies
+├── api/
+│   ├── search.py      ← Search endpoints
+│   ├── lineage.py     ← Lineage endpoints
+│   ├── catalog.py     ← Catalog endpoints
+│   ├── chat.py        ← Chat endpoints
+│   └── health.py      ← Health check
+├── models/
+│   ├── database.py    ← PostgreSQL connection
+│   └── vectordb.py    ← OpenSearch client
+├── services/          ← Business logic
+└── utils/
+    └── config.py      ← Configuration
+                    </div>
+
+                    <h3>Main App File (app.py)</h3>
+                    <div class="code-block">
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from api import search, lineage, catalog, chat, health
+
+app = FastAPI(
+    title="Data Intelligence Platform",
+    description="Metadata discovery and lineage system"
+)
+
+# Enable CORS for frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
+# Include routers from different API modules
+app.include_router(health.router)
+app.include_router(search.router, prefix="/api")
+app.include_router(lineage.router, prefix="/api")
+app.include_router(catalog.router, prefix="/api")
+app.include_router(chat.router, prefix="/api")
+
+@app.get("/")
+async def root():
+    return {"status": "running"}
+
+# Run with: uvicorn app:app --reload
+                    </div>
+
+                    <h3>API Endpoints Structure</h3>
+                    <div class="code-block">
+from fastapi import APIRouter
+from pydantic import BaseModel
+
+router = APIRouter()
+
+class SearchRequest(BaseModel):
+    query: str
+    type: str = "all"
+    limit: int = 20
+
+class SearchResult(BaseModel):
+    id: str
+    name: str
+    type: str
+    score: float
+
+@router.get("/search")
+async def search(q: str, type: str = "all", limit: int = 20):
+    """Search for assets"""
+    # Query OpenSearch
+    # Format results
+    # Return JSON
+    pass
+
+@router.post("/chat")
+async def chat(request: ChatRequest):
+    """Ask AI a question"""
+    # Extract question
+    # Query databases for context
+    # Call Ollama
+    # Return answer
+    pass
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+        <footer>
+            <p>Data Intelligence Platform - Complete Learning Guide | Last Updated: June 2024</p>
+            <p>This documentation will be updated as the project progresses</p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId, event) {
+            event.preventDefault();
+
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(s => s.classList.remove('active'));
+
+            // Remove active class from all links
+            const links = document.querySelectorAll('.sidebar a');
+            links.forEach(l => l.classList.remove('active'));
+
+            // Show selected section
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.classList.add('active');
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // Add active class to clicked link
+            event.target.classList.add('active');
+        }
+
+        // Initialize with intro section
+        document.addEventListener('DOMContentLoaded', function() {
+            const introLink = document.querySelector('.sidebar a[href*="intro"]');
+            if (introLink) {
+                introLink.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
